@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Shield, Code2, Palette } from 'lucide-react';
 
-interface FeatureCardsProps {}
+type FeatureCardsProps = Record<string, never>
 
 const FeatureCards: React.FC<FeatureCardsProps> = () => {
   const features = [

@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
-interface FooterProps {}
+type FooterProps = Record<string, never>
 
 const Footer: React.FC<FooterProps> = () => {
   const footerLinks = {

@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 
-interface HeroSectionProps {}
+type HeroSectionProps = Record<string, never>
 
 const HeroSection: React.FC<HeroSectionProps> = () => {
   return (

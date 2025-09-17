@@ -1,14 +1,55 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
 
-interface NewsletterPageProps {}
+type NewsletterPageProps = Record<string, never>
 
 const NewsletterPage: React.FC<NewsletterPageProps> = () => {
   const [email, setEmail] = useState('');
+
+  const handleScrollToUIPreview = () => {
+    const element = document.getElementById('ui-preview');
+    if (!element) return;
+    const rect = element.getBoundingClientRect();
+    const targetY = window.scrollY + rect.top;
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  };
+
+  // Generate fluid, pseudo-random keyframes that drift organically
+  const generateFluidKeyframes = (
+    steps: number,
+    maxX: number,
+    maxY: number
+  ): { x: number[]; y: number[] } => {
+    const x: number[] = [];
+    const y: number[] = [];
+    let cx = 0;
+    let cy = 0;
+    for (let i = 0; i < steps; i++) {
+      // Small random deltas, then lightly ease toward bounds for fluid motion
+      cx += (Math.random() - 0.5) * (maxX * 0.25);
+      cy += (Math.random() - 0.5) * (maxY * 0.25);
+      // Clamp softly within [-max, max]
+      cx = Math.max(-maxX, Math.min(maxX, cx));
+      cy = Math.max(-maxY, Math.min(maxY, cy));
+      // Add slight smoothing by blending with previous point
+      const px = i > 0 ? x[i - 1] : 0;
+      const py = i > 0 ? y[i - 1] : 0;
+      const smoothedX = px + (cx - px) * 0.6;
+      const smoothedY = py + (cy - py) * 0.6;
+      x.push(smoothedX);
+      y.push(smoothedY);
+    }
+    // Ensure it loops back near the start for seamless repeat
+    x.push(x[0]);
+    y.push(y[0]);
+    return { x, y };
+  };
+
+  const fluidMain = useMemo(() => generateFluidKeyframes(14, 85, 60), []);
+  const fluidBlue = useMemo(() => generateFluidKeyframes(16, 65, 45), []);
 
   // Generate stars with more noticeable smooth movement across the page
   const stars = Array.from({ length: 150 }, (_, i) => ({
@@ -24,29 +65,29 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
   }));
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-x-hidden">
       {/* Space background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-slate-900"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black via-gray-900 to-slate-900"></div>
       
       {/* Enhanced deep space gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-gray-900/70 to-black"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-radial from-transparent via-gray-900/70 to-black"></div>
 
       {/* Strong dark vignette all around the page */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/70"></div>
-      <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-transparent to-black/70"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-r from-black/70 via-transparent to-black/70"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-l from-black/70 via-transparent to-black/70"></div>
       
       {/* Corner dark gradients for stronger vignette effect */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-black via-black/50 to-transparent"></div>
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-black via-black/50 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-black via-black/50 to-transparent"></div>
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-black via-black/50 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-1/3 h-1/3 -z-10 pointer-events-none bg-gradient-to-br from-black via-black/50 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 -z-10 pointer-events-none bg-gradient-to-bl from-black via-black/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 -z-10 pointer-events-none bg-gradient-to-tr from-black via-black/50 to-transparent"></div>
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 -z-10 pointer-events-none bg-gradient-to-tl from-black via-black/50 to-transparent"></div>
 
       
 
       {/* Star field background with smooth movement */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         {stars.map((star) => (
           <motion.div
             key={star.id}
@@ -99,34 +140,40 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
       {/* Section 1: Hero / Signup */}
       <section className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pb-24 sm:pb-32">
         {/* Animated gradient orbs behind Section 1 only */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{ filter: 'hue-rotate(0deg)' }}
+          animate={{ filter: ['hue-rotate(0deg)', 'hue-rotate(360deg)'] }}
+          transition={{ filter: { duration: 60, repeat: Infinity, ease: 'linear' } }}
+        >
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] rounded-full opacity-30"
+            className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] rounded-full opacity-30"
             style={{
               background: 'radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, rgba(34, 197, 94, 0.2) 30%, transparent 60%)',
               filter: 'blur(60px)',
             }}
             animate={{
-              x: [-50, 50, -30, -50],
-              y: [-40, 20, -60, -40],
-              scale: [1, 1.2, 0.8, 1],
+              x: fluidMain.x,
+              y: fluidMain.y,
+              scale: [1, 1.15, 0.95, 1.05, 1],
             }}
             transition={{
-              duration: 15,
+              duration: 36,
               repeat: Infinity,
               ease: "easeInOut",
             }}
           />
           
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-x-20 w-[520px] h-[520px] rounded-full opacity-25"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-25"
             style={{
               background: 'radial-gradient(circle, rgba(147, 51, 234, 0.5) 0%, rgba(147, 51, 234, 0.2) 40%, transparent 70%)',
               filter: 'blur(65px)',
             }}
             animate={{
-              x: [20, -80, 60, 20],
-              y: [0, -50, 40, 0],
+              x: [-5, 70, 10, -75, -20, 65, -5],
+              y: [-45, 5, 55, -5, -35, 25, -45],
               scale: [0.8, 1.1, 0.9, 0.8],
             }}
             transition={{
@@ -138,14 +185,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           />
           
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-x-32 w-[470px] h-[470px] rounded-full opacity-20"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[470px] h-[470px] rounded-full opacity-20"
             style={{
               background: 'radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(59, 130, 246, 0.3) 35%, transparent 65%)',
               filter: 'blur(50px)',
             }}
             animate={{
-              x: [-32, 40, -70, -32],
-              y: [0, -30, 50, 0],
+              x: [0, 60, -25, -65, 15, 55, 0],
+              y: [-40, -15, 30, 15, -25, 45, -40],
               scale: [1, 0.7, 1.3, 1],
             }}
             transition={{
@@ -157,14 +204,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           />
 
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-x-16 w-[420px] h-[420px] rounded-full opacity-15"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full opacity-15"
             style={{
               background: 'radial-gradient(circle, rgba(16, 185, 129, 0.7) 0%, rgba(16, 185, 129, 0.3) 30%, transparent 60%)',
               filter: 'blur(60px)',
             }}
             animate={{
-              x: [-16, -60, 80, -16],
-              y: [0, 40, -30, 0],
+              x: [5, 50, -10, -45, 20, 40, 5],
+              y: [-35, 0, 35, -5, -25, 20, -35],
               scale: [0.9, 1.4, 0.6, 0.9],
             }}
             transition={{
@@ -177,14 +224,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
 
           {/* Additional central gradient orbs for more atmospheric effect */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-x-12 w-[450px] h-[450px] rounded-full opacity-12"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full opacity-12"
             style={{
               background: 'radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 75%)',
               filter: 'blur(75px)',
             }}
             animate={{
-              x: [12, 90, -60, 12],
-              y: [0, -70, 80, 0],
+              x: [0, 65, -15, -60, 10, 55, 0],
+              y: [-65, -5, 50, 5, -40, 35, -65],
               scale: [1.2, 0.8, 1.5, 1.2],
             }}
             transition={{
@@ -196,14 +243,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           />
 
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-x-40 w-[500px] h-[500px] rounded-full opacity-18"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-18"
             style={{
               background: 'radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, rgba(6, 182, 212, 0.15) 45%, transparent 80%)',
               filter: 'blur(70px)',
             }}
             animate={{
-              x: [40, -70, 100, 40],
-              y: [0, 60, -40, 0],
+              x: [0, 75, -20, -70, 15, 70, 0],
+              y: [-55, 0, 55, -10, -35, 25, -55],
               scale: [0.7, 1.3, 0.9, 0.7],
             }}
             transition={{
@@ -216,34 +263,34 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
 
           {/* Additional hues: yellow/amber */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-x-10 translate-y-16 w-[520px] h-[520px] rounded-full opacity-20"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-20"
             style={{
               background: 'radial-gradient(circle, rgba(250, 204, 21, 0.45) 0%, rgba(250, 204, 21, 0.18) 40%, transparent 75%)',
               filter: 'blur(70px)',
             }}
             animate={{
-              x: [-10, 60, -80, -10],
-              y: [16, -40, 30, 16],
-              scale: [1.05, 0.85, 1.2, 1.05],
+              x: fluidMain.x.map((v) => v * 0.7 + 5),
+              y: fluidMain.y.map((v) => v * 0.6 - 5),
+              scale: [1.05, 0.95, 1.15, 1.0, 1.05],
             }}
             transition={{
-              duration: 24,
+              duration: 30,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 5,
+              delay: 3,
             }}
           />
 
           {/* Additional hues: warm orange */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-x-8 -translate-y-24 w-[440px] h-[440px] rounded-full opacity-16"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full opacity-16"
             style={{
               background: 'radial-gradient(circle, rgba(249, 115, 22, 0.38) 0%, rgba(249, 115, 22, 0.16) 45%, transparent 75%)',
               filter: 'blur(65px)',
             }}
             animate={{
-              x: [8, -50, 70, 8],
-              y: [-24, 30, -35, -24],
+              x: [0, 50, -10, -50, 15, 35, 0],
+              y: [-50, -10, 35, 10, -25, 30, -50],
               scale: [0.9, 1.25, 0.8, 0.9],
             }}
             transition={{
@@ -256,14 +303,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
 
           {/* Additional hues: pink/magenta */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -translate-x-44 translate-y-6 w-[460px] h-[460px] rounded-full opacity-18"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] rounded-full opacity-18"
             style={{
               background: 'radial-gradient(circle, rgba(236, 72, 153, 0.42) 0%, rgba(236, 72, 153, 0.18) 40%, transparent 70%)',
               filter: 'blur(72px)',
             }}
             animate={{
-              x: [-44, 30, -60, -44],
-              y: [6, -40, 45, 6],
+              x: [0, 60, -15, -60, 20, 50, 0],
+              y: [-50, -5, 45, 0, -35, 25, -50],
               scale: [1.1, 0.85, 1.3, 1.1],
             }}
             transition={{
@@ -276,14 +323,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
 
           {/* Additional hues: deep violet */}
           <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-x-56 translate-y-8 w-[420px] h-[420px] rounded-full opacity-14"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full opacity-14"
             style={{
               background: 'radial-gradient(circle, rgba(109, 40, 217, 0.40) 0%, rgba(109, 40, 217, 0.16) 35%, transparent 70%)',
               filter: 'blur(66px)',
             }}
             animate={{
-              x: [56, -40, 90, 56],
-              y: [8, 50, -30, 8],
+              x: [0, 55, -10, -55, 15, 40, 0],
+              y: [-35, -5, 30, 5, -25, 20, -35],
               scale: [0.85, 1.2, 0.9, 0.85],
             }}
             transition={{
@@ -293,19 +340,40 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               delay: 11,
             }}
           />
-        </div>
-        {/* Top badge - smaller size */}
+
+          {/* Additional bluish orb for extra prominence */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-24 mix-blend-screen"
+            style={{
+              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.5) 0%, rgba(37, 99, 235, 0.2) 40%, transparent 75%)',
+              filter: 'blur(70px)',
+            }}
+            animate={{
+              x: fluidBlue.x,
+              y: fluidBlue.y,
+              scale: [1.0, 1.12, 0.96, 1.04, 1.0],
+            }}
+            transition={{
+              duration: 34,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: 1.5,
+            }}
+          />
+        </motion.div>
+        {/* CTA above headline */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-gray-800/60 backdrop-blur-sm border border-gray-600/40 rounded-full px-3 py-1.5 text-gray-300 badge-text text-xs">
-            <span>Waitlister</span>
-            <Star size={12} className="text-gray-300" />
-            <span>Framer Template</span>
-          </div>
+          <button
+            onClick={handleScrollToUIPreview}
+            className="inline-flex items-center gap-2 bg-gray-800/60 hover:bg-gray-800/80 backdrop-blur-sm border border-gray-600/40 rounded-full px-4 py-2 text-gray-200 badge-text text-sm transition-colors"
+          >
+            Checkout the UI
+          </button>
         </motion.div>
 
         {/* Main headline - Typography updated to match user spec */}
@@ -399,7 +467,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
       </section>
 
       {/* Section 2: App UI Preview (same ambience and background) */}
-      <section className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-24">
+      <section id="ui-preview" className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-24">
         {/* Top vignette to smooth transition into section 2 */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 sm:h-56 bg-gradient-to-b from-black via-black/60 to-transparent"></div>
         <motion.div
@@ -428,9 +496,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           >
             <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px] aspect-[9/19.5]">
               <div className="absolute inset-x-[6%] inset-y-[10%] rounded-[1.15rem] overflow-hidden z-0 bg-black">
-                <Image src="/img1.jpeg" alt="App UI 1" fill className="object-contain" />
+                <Image src="/img1.jpeg" alt="App UI 1" fill className="object-contain" priority fetchPriority="high" loading="eager" />
               </div>
-              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" />
+              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" priority fetchPriority="high" loading="eager" />
             </div>
             <div className="mt-4">
               <h3 className="text-white text-base font-medium">Creator Feed</h3>
@@ -450,9 +518,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           >
             <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px] aspect-[9/19.5]">
               <div className="absolute inset-x-[6%] inset-y-[10%] rounded-[1.15rem] overflow-hidden z-0 bg-black">
-                <Image src="/img2.jpeg" alt="App UI 2" fill className="object-contain" />
+                <Image src="/img2.jpeg" alt="App UI 2" fill className="object-contain" priority fetchPriority="high" loading="eager" />
               </div>
-              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" />
+              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" priority fetchPriority="high" loading="eager" />
             </div>
             <div className="mt-4">
               <h3 className="text-white text-base font-medium">Topics & Magazines</h3>
@@ -464,26 +532,15 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
         </div>
       </section>
 
-      {/* Bottom "Made in Framer" badge - smaller */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.8 }}
-        className="absolute bottom-6 right-6 z-20"
-      >
-        <div className="inline-flex items-center gap-2 bg-gray-900/60 backdrop-blur-sm border border-gray-600/40 rounded-full px-3 py-1.5 text-gray-300 badge-text text-xs">
-          <div className="w-2.5 h-2.5 bg-gradient-to-br from-blue-400 to-purple-600 rounded-sm"></div>
-          <span>Made in Framer</span>
-        </div>
-      </motion.div>
+      
 
       
 
       {/* Enhanced central radial vignette for dramatic effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/60 pointer-events-none"></div>
+      <div className="absolute inset-0 z-0 bg-gradient-radial from-transparent via-black/20 to-black/60 pointer-events-none"></div>
       
       {/* Additional dark overlay for stronger vignette */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40 pointer-events-none"></div>
+      <div className="absolute inset-0 z-0 bg-gradient-radial from-transparent via-transparent to-black/40 pointer-events-none"></div>
     </div>
   );
 };
