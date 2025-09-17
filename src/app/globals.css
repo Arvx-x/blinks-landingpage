@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Import Inter font for pixel-perfect typography - exactly like the screenshot */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
 /* Custom font weight for ultra-bold text exactly like the reference */
 @layer utilities {
   .font-black {
@@ -19,21 +16,21 @@
   
   /* Custom typography classes to match the screenshot exactly - smaller sizes */
   .headline-massive {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500; /* Changed from 900 to 500 (Medium) */
     letter-spacing: -0.05em; /* Adjusted from -0.04em */
     line-height: 1.1; /* Adjusted from 0.95 (110%) */
   }
   
   .subtitle-text {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.6;
   }
   
   .badge-text {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     letter-spacing: -0.005em;
   }
@@ -51,7 +48,19 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbars on supported browsers while keeping scroll functionality */
+/* Firefox */
+* {
+  scrollbar-width: none;
+}
+/* WebKit */
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
