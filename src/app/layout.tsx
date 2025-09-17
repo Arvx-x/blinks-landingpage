@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "A modern waitlist landing page for Blinks, an AI-native Gen Z news app.",
 }
 
-const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" })
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter", weight: ["400", "500"] })
 
 export default function RootLayout({
   children,
@@ -19,7 +19,6 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body>{children}</body>
     </html>
