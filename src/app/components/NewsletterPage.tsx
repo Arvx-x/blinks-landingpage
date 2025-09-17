@@ -2,13 +2,15 @@
 
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 
 type NewsletterPageProps = Record<string, never>
 
 const NewsletterPage: React.FC<NewsletterPageProps> = () => {
   const [email, setEmail] = useState('');
+  const prefersReducedMotion = useReducedMotion();
+  const shouldAnimate = !prefersReducedMotion;
 
   const handleScrollToUIPreview = () => {
     const element = document.getElementById('ui-preview');
@@ -52,8 +54,8 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
   const fluidMain = useMemo(() => generateFluidKeyframes(14, 85, 60), []);
   const fluidBlue = useMemo(() => generateFluidKeyframes(16, 65, 45), []);
 
-  // Generate stars with more noticeable smooth movement across the page
-  const stars = Array.from({ length: 150 }, (_, i) => ({
+  // Generate stars (reduced count for performance)
+  const stars = useMemo(() => Array.from({ length: 90 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
@@ -63,22 +65,23 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
     moveX: (Math.random() - 0.5) * 100, // Stronger horizontal drift
     moveY: (Math.random() - 0.5) * 80, // Stronger vertical drift
     duration: 8 + Math.random() * 10, // Slightly faster for more visible motion
-  }));
+  })), []);
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       {/* Space background gradient */}
-      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black via-gray-900 to-slate-900"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black via-gray-900 to-slate-900 will-change-transform"></div>
       
       {/* Enhanced deep space gradient overlay */}
-      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-radial from-transparent via-gray-900/70 to-black"></div>
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-radial from-transparent via-gray-900/70 to-black will-change-transform"></div>
 
       
 
       
 
-      {/* Star field background with smooth movement */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+      {/* Star field background (hidden on mobile; disabled for reduced motion) */}
+      {shouldAnimate && (
+      <div className="hidden md:block absolute inset-0 -z-10 pointer-events-none">
         {stars.map((star) => (
           <motion.div
             key={star.id}
@@ -127,17 +130,20 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           />
         ))}
       </div>
+      )}
 
       {/* Section 1: Hero / Signup */}
       <section id="waitlist" className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pb-24 sm:pb-32">
         {/* Animated gradient orbs behind Section 1 only */}
+        {shouldAnimate && (
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
+          className="pointer-events-none absolute inset-0 -z-10 hidden md:block"
           style={{ filter: 'hue-rotate(0deg)' }}
           animate={{ filter: ['hue-rotate(0deg)', 'hue-rotate(360deg)'] }}
           transition={{ filter: { duration: 60, repeat: Infinity, ease: 'linear' } }}
         >
+          {shouldAnimate && (
           <motion.div
             className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[580px] h-[580px] rounded-full opacity-30"
             style={{
@@ -154,8 +160,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-          />
+          />)}
           
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-25"
             style={{
@@ -173,8 +180,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               ease: "easeInOut",
               delay: 2,
             }}
-          />
+          />)}
           
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[470px] h-[470px] rounded-full opacity-20"
             style={{
@@ -192,8 +200,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               ease: "easeInOut",
               delay: 4,
             }}
-          />
+          />)}
 
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full opacity-15"
             style={{
@@ -211,9 +220,10 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               ease: "easeInOut",
               delay: 6,
             }}
-          />
+          />)}
 
           {/* Additional central gradient orbs for more atmospheric effect */}
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full opacity-12"
             style={{
@@ -231,12 +241,13 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               ease: "easeInOut",
               delay: 8,
             }}
-          />
+          />)}
 
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-18"
             style={{
-              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, rgba(6, 182, 212, 0.15) 45%, transparent 80%)',
+              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.1) 45%, transparent 80%)',
               filter: 'blur(70px)',
             }}
             animate={{
@@ -245,18 +256,19 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               scale: [0.7, 1.3, 0.9, 0.7],
             }}
             transition={{
-              duration: 28,
+              duration: 32,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 10,
             }}
-          />
+          />)}
 
           {/* Additional hues: yellow/amber */}
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-20"
             style={{
-              background: 'radial-gradient(circle, rgba(250, 204, 21, 0.45) 0%, rgba(250, 204, 21, 0.18) 40%, transparent 75%)',
+              background: 'radial-gradient(circle, rgba(250, 204, 21, 0.35) 0%, rgba(250, 204, 21, 0.14) 40%, transparent 75%)',
               filter: 'blur(70px)',
             }}
             animate={{
@@ -265,18 +277,19 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               scale: [1.05, 0.95, 1.15, 1.0, 1.05],
             }}
             transition={{
-              duration: 30,
+              duration: 34,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 3,
             }}
-          />
+          />)}
 
           {/* Additional hues: warm orange */}
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full opacity-16"
             style={{
-              background: 'radial-gradient(circle, rgba(249, 115, 22, 0.38) 0%, rgba(249, 115, 22, 0.16) 45%, transparent 75%)',
+              background: 'radial-gradient(circle, rgba(249, 115, 22, 0.28) 0%, rgba(249, 115, 22, 0.12) 45%, transparent 75%)',
               filter: 'blur(65px)',
             }}
             animate={{
@@ -285,18 +298,19 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               scale: [0.9, 1.25, 0.8, 0.9],
             }}
             transition={{
-              duration: 26,
+              duration: 30,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 7,
             }}
-          />
+          />)}
 
           {/* Additional hues: pink/magenta */}
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] rounded-full opacity-18"
             style={{
-              background: 'radial-gradient(circle, rgba(236, 72, 153, 0.42) 0%, rgba(236, 72, 153, 0.18) 40%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(236, 72, 153, 0.32) 0%, rgba(236, 72, 153, 0.14) 40%, transparent 70%)',
               filter: 'blur(72px)',
             }}
             animate={{
@@ -305,18 +319,19 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               scale: [1.1, 0.85, 1.3, 1.1],
             }}
             transition={{
-              duration: 27,
+              duration: 31,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 9,
             }}
-          />
+          />)}
 
           {/* Additional hues: deep violet */}
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full opacity-14"
             style={{
-              background: 'radial-gradient(circle, rgba(109, 40, 217, 0.40) 0%, rgba(109, 40, 217, 0.16) 35%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(109, 40, 217, 0.32) 0%, rgba(109, 40, 217, 0.12) 35%, transparent 70%)',
               filter: 'blur(66px)',
             }}
             animate={{
@@ -325,18 +340,19 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               scale: [0.85, 1.2, 0.9, 0.85],
             }}
             transition={{
-              duration: 29,
+              duration: 33,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 11,
             }}
-          />
+          />)}
 
           {/* Additional bluish orb for extra prominence */}
+          {shouldAnimate && (
           <motion.div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-24 mix-blend-screen"
             style={{
-              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.5) 0%, rgba(37, 99, 235, 0.2) 40%, transparent 75%)',
+              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, rgba(37, 99, 235, 0.18) 40%, transparent 75%)',
               filter: 'blur(70px)',
             }}
             animate={{
@@ -345,13 +361,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               scale: [1.0, 1.12, 0.96, 1.04, 1.0],
             }}
             transition={{
-              duration: 34,
+              duration: 36,
               repeat: Infinity,
               ease: 'easeInOut',
               delay: 1.5,
             }}
-          />
+          />)}
         </motion.div>
+        )}
         {/* CTA above headline */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -610,9 +627,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           >
             <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px] aspect-[9/19.5] overflow-hidden">
               <div className="absolute inset-x-[6%] inset-y-[10%] rounded-[1.15rem] overflow-hidden z-0 bg-black">
-                <Image src="/img1.jpeg" alt="App UI 1" fill className="object-contain" loading="lazy" sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
+              <Image src="/img1.jpeg" alt="App UI 1" fill className="object-contain" loading="lazy" priority={false} sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
               </div>
-              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" loading="lazy" sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
+              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" loading="lazy" priority={false} sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
             </div>
             <div className="mt-4">
           <h3 className="text-white text-base font-medium">Living Cluster View</h3>
@@ -632,9 +649,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           >
             <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px] aspect-[9/19.5] overflow-hidden">
               <div className="absolute inset-x-[6%] inset-y-[10%] rounded-[1.15rem] overflow-hidden z-0 bg-black">
-                <Image src="/img2.jpeg" alt="App UI 2" fill className="object-contain" loading="lazy" sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
+              <Image src="/img2.jpeg" alt="App UI 2" fill className="object-contain" loading="lazy" priority={false} sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
               </div>
-              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" loading="lazy" sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
+              <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none scale-[1.99] translate-x-[-5.8px]" loading="lazy" priority={false} sizes="(max-width: 768px) 260px, (max-width: 1024px) 280px, 300px" />
             </div>
             <div className="mt-4">
           <h3 className="text-white text-base font-medium">Blinks Digest</h3>
