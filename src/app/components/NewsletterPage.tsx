@@ -30,18 +30,18 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
       
       {/* Enhanced deep space gradient overlay */}
       <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-radial from-transparent via-gray-900/70 to-black will-change-transform"></div>
-      {/* Heavy animated background split and deferred */}
-      <AnimatedBackground />
+      {/* Animated background will be mounted within the hero section for proper layering */}
 
       {/* Section 1: Hero / Signup */}
-      <section id="waitlist" className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pb-24 sm:pb-32">
-        {/* Animated orbs handled by AnimatedBackground to defer work */}
+      <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-center px-6 pb-24 sm:pb-32">
+        {/* Fluid blobs background, scoped to hero */}
+        <AnimatedBackground className="absolute inset-0 z-[1] pointer-events-none" />
         {/* CTA above headline */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-8"
+          className="mb-8 relative z-10"
         >
           <button
             onClick={handleScrollToUIPreview}
@@ -56,7 +56,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
-          className="mb-4"
+          className="mb-4 relative z-10"
         >
           <h1 className="headline-massive text-gray-100 text-center">
             <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
@@ -70,7 +70,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="mb-6 text-center"
+          className="mb-6 text-center relative z-10"
         >
           <p className="subtitle-text text-gray-400 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
             Discover stories, join the pulse of debates,<br />
@@ -84,7 +84,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="flex items-center gap-0 w-full max-w-sm"
+          className="flex items-center gap-0 w-full max-w-sm relative z-10"
         >
           <input
             type="email"
@@ -102,7 +102,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           </button>
         </motion.div>
         {/* Planet backdrop inside Section 1 only */}
-        <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-40 overflow-hidden z-0">
+        <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-40 overflow-hidden z-[2]">
           <svg
             viewBox="0 0 1440 300"
             preserveAspectRatio="none"
@@ -176,8 +176,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
       {/* Section 2: What is Blinks (cosmos-themed intro) */}
       <section id="what-is-blinks" className="relative z-10 w-full bg-black text-white">
         <div className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute -top-32 -left-24 w-[42rem] h-[42rem] rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.55) 0%, rgba(59,130,246,0.25) 45%, transparent 70%)' }} />
-          <div className="absolute -bottom-40 -right-24 w-[38rem] h-[38rem] rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.45) 0%, rgba(16,185,129,0.2) 40%, transparent 70%)' }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90" />
         </div>
 
         {/* Hero */}
@@ -251,9 +250,9 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
         </div>
 
         {/* Static subtle stars */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.10]">
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-            {Array.from({ length: 60 }).map((_, i) => (
+            {Array.from({ length: 30 }).map((_, i) => (
               <circle key={i} cx={Math.random() * 100} cy={Math.random() * 100} r={Math.random() * 0.6 + 0.2} fill="white" />
             ))}
           </svg>

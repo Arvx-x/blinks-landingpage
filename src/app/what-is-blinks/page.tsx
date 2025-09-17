@@ -4,11 +4,9 @@ import Image from "next/image"
 export default function WhatIsBlinksPage() {
   return (
     <main className="relative min-h-screen bg-black text-white overflow-hidden">
-      {/* Background gradients to match cosmos theme, lightweight only */}
+      {/* Background; removed gradient orbs */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90"></div>
-        <div className="absolute -top-32 -left-24 w-[42rem] h-[42rem] rounded-full opacity-20 blur-3xl" style={{ background: "radial-gradient(circle, rgba(147,51,234,0.55) 0%, rgba(59,130,246,0.25) 45%, transparent 70%)" }} />
-        <div className="absolute -bottom-40 -right-24 w-[38rem] h-[38rem] rounded-full opacity-20 blur-3xl" style={{ background: "radial-gradient(circle, rgba(34,197,94,0.45) 0%, rgba(16,185,129,0.2) 40%, transparent 70%)" }} />
       </div>
 
       {/* Hero */}
@@ -98,9 +96,9 @@ export default function WhatIsBlinksPage() {
       </section>
 
       {/* Subtle stars layer (static) */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]">
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.10]">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-          {Array.from({ length: 70 }).map((_, i) => (
+          {Array.from({ length: 35 }).map((_, i) => (
             <circle key={i} cx={Math.random() * 100} cy={Math.random() * 100} r={Math.random() * 0.6 + 0.2} fill="white" />
           ))}
         </svg>
