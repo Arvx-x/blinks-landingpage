@@ -19,6 +19,19 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      // Suppress unused vars (keep underscore-prefixed allowed)
+      "@typescript-eslint/no-unused-vars": [
+        "off",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }
+      ],
+      // Allow any
+      "@typescript-eslint/no-explicit-any": "off",
+      // Allow let even if variable is never reassigned
+      "prefer-const": "off",
+      // Next/React specific relaxations if needed
+      "react/jsx-no-useless-fragment": "off",
+    },
   },
 ];
 

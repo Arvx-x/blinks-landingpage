@@ -144,6 +144,7 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
       </div>
 
       {/* Multi-orb gradient ambience (circular orbs) */}
+      {false && (
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -277,6 +278,7 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
           transition={shouldAnimate ? { duration: 36, repeat: Infinity, ease: "easeInOut", delay: 1.5 } : undefined}
         />
       </motion.div>
+      )}
     </div>
   );
 }

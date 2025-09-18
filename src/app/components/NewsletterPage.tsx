@@ -4,9 +4,12 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+import GooeyNav from './GooeyNav';
+ 
 
 const AnimatedBackground = dynamic(() => import('./AnimatedBackground'), { ssr: false });
 const UIPreviewSection = dynamic(() => import('./UIPreviewSection'), { ssr: false });
+const LightRays = dynamic(() => import('./LightRays'), { ssr: false });
 
 type NewsletterPageProps = Record<string, never>
 
@@ -25,6 +28,26 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
+      <header className="fixed top-0 left-0 right-0 z-[1000]">
+        <div className="mx-auto px-4 py-2 flex justify-center">
+          <div className="inline-flex items-center justify-center rounded-2xl bg-black/70 backdrop-blur border border-white/10 shadow-lg px-3 py-2">
+            <GooeyNav
+              items={[
+                { label: 'Home', href: '#waitlist' },
+                { label: 'About', href: '#what-is-blinks' },
+                { label: 'Contact', href: '#' },
+              ]}
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={300}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+            />
+          </div>
+        </div>
+      </header>
       {/* Space background gradient */}
       <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black via-gray-900 to-slate-900 will-change-transform"></div>
       
@@ -33,9 +56,24 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
       {/* Animated background will be mounted within the hero section for proper layering */}
 
       {/* Section 1: Hero / Signup */}
-      <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-center px-6 pb-24 sm:pb-32">
+      <section id="waitlist" className="relative min-h-[calc(100vh-88px)] flex flex-col items-center justify-center px-6 pb-24 sm:pb-32 pt-20 sm:pt-28 md:pt-32">
         {/* Fluid blobs background, scoped to hero */}
         <AnimatedBackground className="absolute inset-0 z-[1] pointer-events-none" />
+        {/* Light rays emerging from planet edge */}
+        <div className="absolute inset-0 z-[2] pointer-events-none mix-blend-screen">
+          <LightRays
+            raysOrigin="bottom-center"
+            raysColor="#00ffff"
+            raysSpeed={1.5}
+            lightSpread={0.8}
+            rayLength={1.2}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+            className="custom-rays"
+          />
+        </div>
         {/* CTA above headline */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -102,7 +140,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           </button>
         </motion.div>
         {/* Planet backdrop inside Section 1 only */}
-        <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-40 overflow-hidden z-[2]">
+        <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-40 overflow-hidden z-[2]" style={{ bottom: '-5%' }}>
           <svg
             viewBox="0 0 1440 300"
             preserveAspectRatio="none"
@@ -249,14 +287,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           </div>
         </div>
 
-        {/* Static subtle stars */}
-        <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.10]">
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-            {Array.from({ length: 30 }).map((_, i) => (
-              <circle key={i} cx={Math.random() * 100} cy={Math.random() * 100} r={Math.random() * 0.6 + 0.2} fill="white" />
-            ))}
-          </svg>
-        </div>
+        
 
         <style jsx>{`
           .animate-spin-slow { animation: spin 18s linear infinite; }
