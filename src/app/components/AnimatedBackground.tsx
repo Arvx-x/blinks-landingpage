@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 type FluidBlobProps = {
@@ -57,7 +57,7 @@ type AnimatedBackgroundProps = {
   className?: string;
 };
 
-export default function AnimatedBackground({ className }: AnimatedBackgroundProps) {
+function AnimatedBackground({ className }: AnimatedBackgroundProps) {
   const prefersReducedMotion = useReducedMotion();
   const shouldAnimate = !prefersReducedMotion;
   const generateFluidKeyframes = (
@@ -89,11 +89,7 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
   const fluidMain = useMemo(() => generateFluidKeyframes(14, 85, 60), []);
   const fluidBlue = useMemo(() => generateFluidKeyframes(16, 65, 45), []);
 
-  const [starCount, setStarCount] = useState<number>(80);
-
-  useEffect(() => {
-    setStarCount(80);
-  }, []);
+  const starCount = 80;
 
   const stars = useMemo(
     () =>
@@ -112,7 +108,7 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
   );
 
   return (
-    <div className={className ?? "absolute inset-0 pointer-events-none z-0"} style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}>
+    <div className={className ?? "absolute inset-0 pointer-events-none z-0"} style={{ willChange: "transform, opacity", transform: "translateZ(0)", contain: "layout paint size" }}>
       {/* Star field background */}
       <div className="absolute inset-0 pointer-events-none" style={{ willChange: "transform, opacity" }}>
         {stars.map((star) => (
@@ -282,5 +278,7 @@ export default function AnimatedBackground({ className }: AnimatedBackgroundProp
     </div>
   );
 }
+
+export default React.memo(AnimatedBackground);
 
 
