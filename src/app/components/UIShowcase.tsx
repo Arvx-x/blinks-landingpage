@@ -16,7 +16,7 @@ export default function UIShowcase() {
         {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 md:p-10 items-center">
           {/* Center-stage circular video placeholder */}
-          <div className="mx-auto lg:mx-0 relative rounded-[4px] overflow-hidden w-[44vw] max-w-[440px] aspect-square bg-gradient-to-br from-orange-500 via-amber-600 to-purple-700">
+          <div className="mx-auto lg:mx-0 relative rounded-[4px] overflow-hidden w-full lg:w-[44vw] lg:max-w-[440px] h-[44vw] max-h-[440px] lg:h-auto lg:aspect-square bg-gradient-to-br from-orange-500 via-amber-600 to-purple-700">
             <video
               className="absolute inset-0 h-full w-full object-cover"
               src="https://framerusercontent.com/assets/CtSYQwWgD3v3HDe3HMRPnHbvGOk.mp4"
