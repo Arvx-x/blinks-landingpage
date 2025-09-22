@@ -29,7 +29,7 @@ export default function CreatorsSection() {
           </div>
         </div>
         <div className="relative">
-          <div className="rounded-2xl border border-white/10 bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
+		<div className="rounded-2xl border border-[#eeece6] bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
             <Image src="/iphone-img.png" alt="Creator earnings and subscriptions" width={800} height={800} className="w-full h-auto rounded-xl" />
           </div>
         </div>

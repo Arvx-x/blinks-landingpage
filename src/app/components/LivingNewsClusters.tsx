@@ -11,10 +11,9 @@ export default function LivingNewsClusters() {
       <section id="clusters" className="relative z-10 w-full bg-black text-white py-20 cv-auto">
 			<div className="max-w-6xl mx-auto px-6">
 				<h3 className="headline-massive text-gray-100 text-3xl sm:text-4xl md:text-5xl mb-6">News Clusters</h3>
-			<div className="relative rounded-2xl border border-white/10 bg-black/60 p-6 shadow-[0_0_48px_rgba(255,255,255,0.12)] overflow-hidden">
-				<div className="pointer-events-none absolute -inset-12 rounded-[36px] blur-3xl bg-gradient-radial from-cyan-400/10 via-emerald-400/10 to-transparent" />
-				<div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-              <div className="md:col-span-2">
+			<div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_260px] gap-10 items-start">
+								<div>
+									<div className="rounded-2xl border border-[#eeece6] bg-black/40 p-5">
 						<h3 className="headline-massive text-2xl sm:text-3xl md:text-4xl">How <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">clusters</span> live</h3>
 						<p className="subtitle-text text-gray-400 mt-3">Clusters evolve as new facts arrive. They stitch timelines, sources, and perspectives so you can follow the living story.</p>
 						<ul className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-300 text-sm">
@@ -29,32 +28,57 @@ export default function LivingNewsClusters() {
 							<span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Shareable cards</span>
 							<span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Topic splits</span>
 						</div>
+					{/* Feature details grid */}
+					<div className="mt-6 rounded-xl border border-[#eeece6] bg-black/40 p-4">
+						<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+							{/* Snackable → Cluster */}
+							<div className="rounded-lg bg-black/30 p-4">
+								<div className="flex items-start gap-3">
+									<div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500/70 to-blue-500/70" />
+									<div>
+										<div className="text-white text-sm font-medium">Snackable cards → Living clusters</div>
+										<p className="text-gray-400 text-xs mt-1">Tap a card to expand into a living cluster.</p>
+									</div>
+								</div>
+							</div>
+
+							{/* Ask AI */}
+							<div className="rounded-lg bg-black/30 p-4">
+								<div className="flex items-start gap-3">
+										<div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500/70 to-blue-500/70" />
+									<div>
+										<div className="text-white text-sm font-medium">Ask AI</div>
+										<p className="text-gray-400 text-xs mt-1">Ask follow-ups grounded in receipts.</p>
+									</div>
+								</div>
+							</div>
+
+							{/* Timeline */}
+							<div className="rounded-lg bg-black/30 p-4">
+								<div className="flex items-start gap-3">
+										<div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500/70 to-blue-500/70" />
+									<div>
+										<div className="text-white text-sm font-medium">Timeline of news</div>
+										<p className="text-gray-400 text-xs mt-1">Auto-updating timeline of key facts.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 						<div className="mt-5 flex gap-3">
 							<button className="px-4 py-2.5 rounded-lg bg-gray-200 text-black text-xs">View a sample</button>
 							<button className="px-4 py-2.5 rounded-lg border border-white/15 text-gray-200 text-xs">Follow updates</button>
 						</div>
-              </div>
-					<div className="md:col-span-1">
-						<div className="relative rounded-xl border border-white/10 bg-black/40 p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
-							{/* Cosmic orbit element behind image */}
-							<svg viewBox="0 0 144 144" className="absolute -top-4 -left-6 w-40 h-40 opacity-60" aria-hidden>
-								<defs>
-									<radialGradient id="cg" cx="50%" cy="50%" r="50%">
-										<stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
-										<stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
-									</radialGradient>
-								</defs>
-								<ellipse cx="72" cy="72" rx="54" ry="22" fill="none" stroke="#fff" strokeOpacity="0.2" />
-								<circle cx="98" cy="64" r="4" fill="#fff" fillOpacity="0.8" />
-								<circle cx="72" cy="72" r="40" fill="url(#cg)" />
-							</svg>
-							<Image src="/window.svg" alt="Clusters feature placeholder" width={800} height={800} className="relative z-10 w-full h-40 md:h-full object-cover rounded-lg" />
 						</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+					</div>
+					<div className="relative">
+						<div className="rounded-2xl border border-[#eeece6] bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)] w-full max-w-[200px] sm:max-w-[220px] md:max-w-[260px] mx-auto md:ml-auto md:mr-0 self-start">
+							<Image src="/img1.jpeg" alt="News app snapshot" width={800} height={800} className="w-full h-auto rounded-xl" />
+						</div>
+						</div>
+					</div>
+				</div>
+	      </section>
 
       {/* Section: Debates */}
       <section id="debates" className="relative z-10 w-full bg-black text-white py-20 cv-auto">
@@ -63,7 +87,7 @@ export default function LivingNewsClusters() {
             <h3 className="headline-massive text-3xl sm:text-4xl md:text-5xl">Debates</h3>
             <Link href="#" className="text-sm underline text-gray-300">View guidelines</Link>
           </div>
-          <div className="mt-8 relative rounded-2xl border border-white/10 bg-neutral-950/70 backdrop-blur p-6 shadow-[0_0_48px_rgba(255,255,255,0.12)] overflow-hidden">
+			<div className="mt-8 relative rounded-2xl border border-[#eeece6] bg-neutral-950/70 backdrop-blur p-6 shadow-[0_0_48px_rgba(255,255,255,0.12)] overflow-hidden">
             <div className="pointer-events-none absolute -inset-10 rounded-[32px] blur-3xl bg-gradient-radial from-cyan-400/10 via-emerald-400/10 to-transparent" />
 				<div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
 					<div className="md:col-span-2">
@@ -81,7 +105,7 @@ export default function LivingNewsClusters() {
                 </div>
               </div>
               <div className="md:col-span-1">
-                <div className="rounded-xl border border-white/10 bg-black/40 p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
+				<div className="rounded-xl border border-[#eeece6] bg-black/40 p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
                   <svg viewBox="0 0 144 144" className="w-full h-40 md:h-48" aria-hidden>
                     <defs>
                       <radialGradient id="g" cx="50%" cy="50%" r="50%">
@@ -100,18 +124,22 @@ export default function LivingNewsClusters() {
               </div>
             </div>
           </div>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {["Is AI regulation slowing innovation?", "Do news cycles distort reality?", "Should creators own their feeds?"].map((q, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-black/50 backdrop-blur p-5 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
-                <h4 className="text-white text-base font-medium">{q}</h4>
-                <p className="text-gray-400 text-sm mt-2">Add a 200-character take with sources. Earn reputation for signal, not volume.</p>
-                <div className="mt-4 flex gap-2">
-                  <button className="px-3 py-1.5 rounded-lg bg-gray-200 text-black text-xs">Post a take</button>
-                  <button className="px-3 py-1.5 rounded-lg border border-white/15 text-gray-200 text-xs">See sources</button>
-                </div>
-              </div>
-            ))}
-          </div>
+		  <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+			{[
+				{ title: "Threaded discussions", desc: "Replies nest into clean threads so context stays intact and noise collapses." },
+				{ title: "For/Against spaces", desc: "Split rooms for opposing takes. Compare arguments side‑by‑side with receipts." },
+				{ title: "Polling & consensus", desc: "Run quick polls, highlight expert votes, and track how sentiment shifts over time." }
+			].map((f, i) => (
+				<div key={i} className="rounded-2xl border border-[#eeece6] bg-black/50 backdrop-blur p-5 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
+					<h4 className="text-white text-base font-medium">{f.title}</h4>
+					<p className="text-gray-400 text-sm mt-2">{f.desc}</p>
+					<div className="mt-4 flex gap-2">
+						<button className="px-3 py-1.5 rounded-lg bg-gray-200 text-black text-xs">Learn more</button>
+						<button className="px-3 py-1.5 rounded-lg border border-white/15 text-gray-200 text-xs">See how it works</button>
+					</div>
+				</div>
+			))}
+		  </div>
         </div>
       </section>
     </div>
