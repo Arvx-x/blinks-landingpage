@@ -40,7 +40,7 @@ export default function Testimonials() {
           <h3 className="headline-massive text-gray-100 mt-6">
             <span className="block text-3xl sm:text-4xl md:text-5xl">Trusted by curious minds</span>
           </h3>
-          <p className="subtitle-text text-gray-400 mt-3 max-w-2xl mx-auto">From students to writers to news junkies—Blinks helps you track living stories without the overwhelm.</p>
+          <p className="subtitle-text text-gray-400 mt-3 max-w-2xl mx-auto">From students to writers to news junkies, Blinks helps you track living stories without the overwhelm.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

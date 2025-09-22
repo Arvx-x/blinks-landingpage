@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = () => {
             >
               <h3 className="text-2xl font-bold text-white mb-4">Blinks</h3>
               <p className="text-gray-300 mb-6 max-w-sm">
-                Build interactive blockchain links that enable seamless on-chain actions directly from any interface.
+                Follow the world with living clusters, AI context, and community pulse.
               </p>
               
               <div className="flex space-x-4">
