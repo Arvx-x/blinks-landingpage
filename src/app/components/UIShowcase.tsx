@@ -2,7 +2,7 @@
 
 export default function UIShowcase() {
   return (
-    <section id="ui-showcase" className="relative z-10 min-h-screen flex items-center justify-center px-6 py-24 bg-black">
+    <section id="ui-showcase" className="relative z-10 min-h-screen flex items-center justify-center px-6 py-24 bg-black cv-auto">
       {/* Mac-like window frame */}
       <div className="relative w-full max-w-6xl mx-auto rounded-3xl border border-[#eeece6] bg-neutral-950/60 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.55)] overflow-hidden">
         {/* Title bar */}
@@ -24,7 +24,7 @@ export default function UIShowcase() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
             />
           </div>
 

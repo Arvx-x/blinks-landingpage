@@ -9,6 +9,10 @@ import GooeyNav from './GooeyNav';
 
 const AnimatedBackground = dynamic(() => import('./AnimatedBackground'), { ssr: false });
 const UIShowcase = dynamic(() => import('./UIShowcase'), { ssr: false });
+import LivingNewsClusters from './LivingNewsClusters';
+import CreatorsSection from './CreatorsSection';
+import Testimonials from './Testimonials';
+import Footer from './Footer';
 const LightRays = dynamic(() => import('./LightRays'), { ssr: false });
 
 type NewsletterPageProps = Record<string, never>
@@ -210,7 +214,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
       </section>
 
       {/* Section 2: What is Blinks (cosmos-themed intro) */}
-      <section id="what-is-blinks" className="relative z-10 w-full bg-black text-white">
+      <section id="what-is-blinks" className="relative z-10 w-full bg-black text-white cv-auto">
         <div className="absolute inset-0 -z-10 pointer-events-none bg-black" />
 
         {/* Hero */}
@@ -232,14 +236,10 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
 
       {/* Section 3: App UI Preview split and lazy loaded */}
       <UIShowcase />
-
-      
-
-      
-
-      
-
-      
+      <LivingNewsClusters />
+      <CreatorsSection />
+      <Testimonials />
+      <Footer />
     </div>
   );
 };
