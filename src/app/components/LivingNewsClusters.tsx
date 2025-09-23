@@ -1,84 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 export default function LivingNewsClusters() {
   return (
     <div id="living-news-clusters" className="relative overflow-hidden">
 
-      {/* Section: Clusters explainer (feature card with image) */}
-      <section id="clusters" className="relative z-10 w-full bg-black text-white py-20 cv-auto">
-			<div className="max-w-6xl mx-auto px-6">
-				<h3 className="headline-massive text-gray-100 text-3xl sm:text-4xl md:text-5xl mb-6">News Clusters</h3>
-			<div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_260px] gap-10 items-start">
-								<div>
-									<div className="rounded-2xl border border-[#eeece6] bg-black/40 p-5">
-						<h3 className="headline-massive text-2xl sm:text-3xl md:text-4xl">How <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">clusters</span> live</h3>
-						<p className="subtitle-text text-gray-400 mt-3">Clusters evolve as new facts arrive. They stitch timelines, sources, and perspectives so you can follow the living story.</p>
-						<ul className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-300 text-sm">
-                  <li>• Timelines auto-update as new facts land</li>
-                  <li>• Source-weighted summaries keep receipts</li>
-                  <li>• Public pulse to see real-time reactions</li>
-                  <li>• Share as cards, embeds, or notifications</li>
-                </ul>
-						{/* Feature chips and CTAs */}
-						<div className="mt-5 flex flex-wrap gap-2">
-							<span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Receipts inside</span>
-							<span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Shareable cards</span>
-							<span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Topic splits</span>
-						</div>
-					{/* Feature details grid */}
-					<div className="mt-6 rounded-xl border border-[#eeece6] bg-black/40 p-4">
-						<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-							{/* Snackable → Cluster */}
-							<div className="rounded-lg bg-black/30 p-4">
-								<div className="flex items-start gap-3">
-									<div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500/70 to-blue-500/70" />
-									<div>
-										<div className="text-white text-sm font-medium">Snackable cards → Living clusters</div>
-										<p className="text-gray-400 text-xs mt-1">Tap a card to expand into a living cluster.</p>
-									</div>
-								</div>
-							</div>
-
-							{/* Ask AI */}
-							<div className="rounded-lg bg-black/30 p-4">
-								<div className="flex items-start gap-3">
-										<div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500/70 to-blue-500/70" />
-									<div>
-										<div className="text-white text-sm font-medium">Ask AI</div>
-										<p className="text-gray-400 text-xs mt-1">Ask follow-ups grounded in receipts.</p>
-									</div>
-								</div>
-							</div>
-
-							{/* Timeline */}
-							<div className="rounded-lg bg-black/30 p-4">
-								<div className="flex items-start gap-3">
-										<div className="h-8 w-8 rounded-md bg-gradient-to-br from-emerald-500/70 to-blue-500/70" />
-									<div>
-										<div className="text-white text-sm font-medium">Timeline of news</div>
-										<p className="text-gray-400 text-xs mt-1">Auto-updating timeline of key facts.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div className="mt-5 flex gap-3">
-							<button className="px-4 py-2.5 rounded-lg bg-gray-200 text-black text-xs">View a sample</button>
-							<button className="px-4 py-2.5 rounded-lg border border-white/15 text-gray-200 text-xs">Follow updates</button>
-						</div>
-						</div>
-					</div>
-					<div className="relative">
-						<div className="rounded-2xl border border-[#eeece6] bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)] w-full max-w-[200px] sm:max-w-[220px] md:max-w-[260px] mx-auto md:ml-auto md:mr-0 self-start">
-							<Image src="/img1.jpeg" alt="News app snapshot" width={800} height={800} className="w-full h-auto rounded-xl" />
-						</div>
-						</div>
-					</div>
-				</div>
-	      </section>
 
       {/* Section: Debates */}
       <section id="debates" className="relative z-10 w-full bg-black text-white py-20 cv-auto">

@@ -1,19 +1,18 @@
 "use client";
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import AnimatedBackground from './AnimatedBackground';
+import UIShowcase from './UIShowcase';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import GooeyNav from './GooeyNav';
  
 
-const AnimatedBackground = dynamic(() => import('./AnimatedBackground'), { ssr: false });
-const UIShowcase = dynamic(() => import('./UIShowcase'), { ssr: false });
 import LivingNewsClusters from './LivingNewsClusters';
 import CreatorsSection from './CreatorsSection';
 import Testimonials from './Testimonials';
 import Footer from './Footer';
-const LightRays = dynamic(() => import('./LightRays'), { ssr: false });
+import LightRays from './LightRays';
 
 type NewsletterPageProps = Record<string, never>
 

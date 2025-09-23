@@ -24,7 +24,7 @@ export default function UIShowcase() {
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
             />
           </div>
 

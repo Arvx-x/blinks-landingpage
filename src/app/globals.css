@@ -42,10 +42,10 @@
   .bg-gradient-radial {
     background: radial-gradient(circle at center, var(--tw-gradient-stops));
   }
-  /* Performance: avoid rendering offscreen content until needed */
+  /* Disable content-visibility to avoid late paints while scrolling */
   .cv-auto {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 800px;
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
   }
 }
 
