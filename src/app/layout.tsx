@@ -6,6 +6,11 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Blinks – Join the Waitlist",
   description: "A modern waitlist landing page for Blinks, an AI-native Gen Z news app.",
+  icons: {
+    icon: "/blinks-logo.svg",
+    shortcut: "/blinks-logo.svg",
+    apple: "/blinks-logo.svg",
+  },
 }
 
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter", weight: ["400", "500"] })

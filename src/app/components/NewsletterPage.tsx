@@ -6,6 +6,7 @@ import UIShowcase from './UIShowcase';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import GooeyNav from './GooeyNav';
+import Image from 'next/image';
  
 
 import LivingNewsClusters from './LivingNewsClusters';
@@ -21,13 +22,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
   const prefersReducedMotion = useReducedMotion();
   const shouldAnimate = !prefersReducedMotion;
 
-  const handleScrollToUIPreview = () => {
-    const element = document.getElementById('ui-preview');
-    if (!element) return;
-    const rect = element.getBoundingClientRect();
-    const targetY = window.scrollY + rect.top;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
-  };
+  
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
@@ -79,6 +74,17 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
             className="custom-rays"
           />
         </div>
+        {/* Decorative logo in corner */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="absolute top-6 left-6 z-10 pointer-events-none"
+          aria-hidden
+        >
+          <Image src="/blinks-logo.svg" alt="" width={64} height={64} className="opacity-90" />
+        </motion.div>
+
         {/* CTA above headline */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -87,8 +93,14 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           className="mb-8 relative z-10"
         >
           <button
-            onClick={handleScrollToUIPreview}
-            className="inline-flex items-center gap-2 bg-gray-800/60 hover:bg-gray-800/80 backdrop-blur-sm border border-gray-600/40 rounded-full px-4 py-2 text-gray-200 badge-text text-sm transition-colors"
+            onClick={() => {
+              const element = document.getElementById('ui-preview')
+              if (!element) return
+              const rect = element.getBoundingClientRect()
+              const targetY = window.scrollY + rect.top
+              window.scrollTo({ top: targetY, behavior: 'smooth' })
+            }}
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm badge-text text-white/90 bg-gradient-to-b from-[#105ce9]/30 via-[#105ce9]/15 to-[#105ce9]/10 hover:from-[#105ce9]/40 hover:via-[#105ce9]/20 hover:to-[#105ce9]/15 backdrop-blur-md border border-white/20 ring-1 ring-inset ring-white/10 shadow-[0_8px_30px_rgba(16,92,233,0.25)] transition-colors"
           >
             Checkout the UI
           </button>
@@ -103,7 +115,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
         >
           <h1 className="headline-massive text-gray-100 text-center">
             <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-              Join <span className="animated-gradient-text bg-clip-text text-transparent">Blinks</span> Now
+              Join <span className="animated-gradient-text bg-clip-text text-transparent">blinks</span> Now
             </span>
           </h1>
         </motion.div>
@@ -120,6 +132,24 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
             and follow creators through newsletters<br />
             and magazines.
           </p>
+        </motion.div>
+
+        {/* Playful image placeholders row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.05 }}
+          className="relative z-10 mb-6 grid grid-cols-3 gap-3 w-full max-w-md"
+        >
+          <div className="rounded-xl border border-black/10 bg-white overflow-hidden rotate-[-2deg] shadow-sm">
+            <Image src="/img1.jpeg" alt="Placeholder 1" width={160} height={120} className="w-full h-[90px] object-cover" />
+          </div>
+          <div className="rounded-xl border border-black/10 bg-white overflow-hidden rotate-[3deg] shadow-sm">
+            <Image src="/blinks-logo.svg" alt="Blinks logo" width={160} height={120} className="w-full h-[90px] object-cover" />
+          </div>
+          <div className="rounded-xl border border-black/10 bg-white overflow-hidden rotate-[1deg] shadow-sm">
+            <Image src="/img2.jpeg" alt="Placeholder 3" width={160} height={120} className="w-full h-[90px] object-cover" />
+          </div>
         </motion.div>
 
         {/* Email signup form - smaller horizontal layout */}
@@ -223,7 +253,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           </span>
           <h2 className="headline-massive text-gray-100 mt-10">
             <span className="block text-4xl sm:text-5xl md:text-6xl">
-              What is <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">Blinks</span>?
+              What is <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">blinks</span>?
             </span>
           </h2>
           <p className="subtitle-text text-gray-400 max-w-2xl mx-auto mt-5">

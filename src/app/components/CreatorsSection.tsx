@@ -24,12 +24,12 @@ export default function CreatorsSection() {
             <li>• Exportable email list. Your audience, your rules</li>
           </ul>
           <div className="mt-6 flex gap-3">
-            <button className="px-4 py-2.5 rounded-lg bg-gray-200 text-black text-xs">Start publishing</button>
-            <button className="px-4 py-2.5 rounded-lg border border-white/15 text-gray-200 text-xs">Subscribe to a demo</button>
+            <button className="px-4 py-2.5 rounded-lg bg-[#105ce9] hover:bg-[#0e4fd0] text-white text-xs">Start publishing</button>
+            <button className="px-4 py-2.5 rounded-lg border border-[#105ce9] text-gray-200 text-xs">Subscribe to a demo</button>
           </div>
         </div>
         <div className="relative">
-		<div className="rounded-2xl border border-[#eeece6] bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
+        <div className="rounded-2xl border border-[#105ce9] bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(16,92,233,0.25)]">
             <Image src="/iphone-img.png" alt="Creator earnings and subscriptions" width={800} height={800} className="w-full h-auto rounded-xl" />
           </div>
         </div>

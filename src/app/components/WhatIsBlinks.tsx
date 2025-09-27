@@ -20,7 +20,7 @@ export default function WhatIsBlinks() {
           </span>
           <h1 className="headline-massive text-gray-100 mt-6">
             <span className="block text-4xl sm:text-5xl md:text-6xl">
-              What is <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">Blinks</span>?
+              What is <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">blinks</span>?
             </span>
           </h1>
           <p className="subtitle-text text-gray-400 max-w-2xl mx-auto mt-4">
@@ -34,7 +34,7 @@ export default function WhatIsBlinks() {
           </div>
 
           <div className="mt-8">
-            <Link href="/#waitlist" className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
+            <Link href="/#waitlist" className="inline-flex items-center gap-2 bg-[#105ce9] hover:bg-[#0e4fd0] text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
               Join the waitlist
             </Link>
           </div>
@@ -63,13 +63,13 @@ export default function WhatIsBlinks() {
               Follow evolving stories with living clusters, AI context, and community pulse. Then lean back with Blinks Digest — a weekly magazine of top clusters and debates.
             </p>
             <div className="mt-6">
-              <Link href="/#waitlist" className="inline-flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
+              <Link href="/#waitlist" className="inline-flex items-center gap-2 bg-[#105ce9] hover:bg-[#0e4fd0] text-white px-5 py-2.5 rounded-lg font-medium transition-colors duration-200">
                 Get early access
               </Link>
             </div>
           </div>
           <div>
-            <div className="relative w-full aspect-[16/10] rounded-2xl border border-gray-800 bg-gray-900/60 overflow-hidden">
+            <div className="relative w-full aspect-[16/10] rounded-2xl border border-[#105ce9] bg-gray-900/60 overflow-hidden shadow-[0_0_48px_rgba(16,92,233,0.25)]">
               <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 opacity-20">
                 {Array.from({ length: 72 }).map((_, i) => (
                   <div key={i} className="border border-gray-800/60" />

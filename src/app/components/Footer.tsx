@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import Image from 'next/image';
 
 type FooterProps = Record<string, never>
 
@@ -33,7 +34,10 @@ const Footer: React.FC<FooterProps> = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-white mb-4">Blinks</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/blinks-logo.svg" alt="Blinks logo" width={36} height={36} className="rounded" />
+                <h3 className="text-2xl font-bold text-white">blinks</h3>
+              </div>
               <p className="text-gray-300 mb-6 max-w-sm">
                 Follow the world with living clusters, AI context, and community pulse.
               </p>

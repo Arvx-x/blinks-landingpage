@@ -45,7 +45,7 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="relative rounded-2xl border border-white/10 bg-neutral-950/70 backdrop-blur p-6 shadow-[0_0_48px_rgba(255,255,255,0.12)] overflow-hidden">
+            <div key={i} className="relative rounded-2xl border border-[#105ce9] bg-neutral-950/70 backdrop-blur p-6 shadow-[0_0_48px_rgba(16,92,233,0.25)] overflow-hidden">
               <div className={`pointer-events-none absolute -inset-4 rounded-full blur-3xl bg-gradient-radial ${t.colorFrom} ${t.colorTo}`} />
               <div className="relative z-10">
                 {/* Planet/cosmic header */}

@@ -4,9 +4,9 @@ export default function UIShowcase() {
   return (
     <section id="ui-showcase" className="relative z-10 min-h-screen flex items-center justify-center px-6 py-24 bg-black cv-auto">
       {/* Mac-like window frame */}
-      <div className="relative w-full max-w-6xl mx-auto rounded-3xl border border-[#eeece6] bg-neutral-950/60 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.55)] overflow-hidden">
+      <div className="relative w-full max-w-6xl mx-auto rounded-3xl border border-[#105ce9] bg-neutral-950/60 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.55)] overflow-hidden">
         {/* Title bar */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#eeece6] bg-[#eeece6]">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#105ce9] bg-[#105ce9]">
           <span className="h-3 w-3 rounded-full bg-red-400" />
           <span className="h-3 w-3 rounded-full bg-yellow-400" />
           <span className="h-3 w-3 rounded-full bg-green-400" />

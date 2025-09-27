@@ -11,28 +11,22 @@ export default function LivingNewsClusters() {
       <section id="debates" className="relative z-10 w-full bg-black text-white py-20 cv-auto">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between">
-            <h3 className="headline-massive text-3xl sm:text-4xl md:text-5xl">Debates</h3>
+            <h3 className="headline-massive text-3xl sm:text-4xl md:text-5xl">Debates <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">spaces</span></h3>
             <Link href="#" className="text-sm underline text-gray-300">View guidelines</Link>
           </div>
-			<div className="mt-8 relative rounded-2xl border border-[#eeece6] bg-neutral-950/70 backdrop-blur p-6 shadow-[0_0_48px_rgba(255,255,255,0.12)] overflow-hidden">
-            <div className="pointer-events-none absolute -inset-10 rounded-[32px] blur-3xl bg-gradient-radial from-cyan-400/10 via-emerald-400/10 to-transparent" />
-				<div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <p className="text-gray-400 mt-2 mb-0">Focused rooms for structured debate — split views, source-tagged receipts, quick polls, and reputation that rewards clarity.</p>
+            <div className="mt-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
 					<div className="md:col-span-2">
-						<h4 className="text-2xl sm:text-3xl font-medium">Debate <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">Spaces</span></h4>
                 <p className="subtitle-text text-gray-400 mt-2">Spaces are focused rooms for high-signal discussion. Short takes, source-tagged receipts, and reputation that rewards clarity over volume.</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Real-time threads</span>
-                  <span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Source-tagged</span>
-                  <span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Reputation</span>
-                  <span className="px-3 py-1.5 rounded-full text-xs bg-white/10 border border-white/15">Moderation</span>
-                </div>
-                <div className="mt-5 flex gap-3">
-                  <button className="px-4 py-2.5 rounded-lg bg-gray-200 text-black text-xs">Create a space</button>
-                  <button className="px-4 py-2.5 rounded-lg border border-white/15 text-gray-200 text-xs">Explore spaces</button>
+                <p className="subtitle-text text-gray-400 mt-3">Host moderated sessions, set topics, invite experts, and archive top arguments.</p>
+                <div className="mt-4 flex gap-3">
+                  <button className="px-4 py-2.5 rounded-lg bg-[#105ce9] hover:bg-[#0e4fd0] text-white text-xs">Create a space</button>
+                  <button className="px-4 py-2.5 rounded-lg border border-[#105ce9] text-gray-200 text-xs">Explore spaces</button>
                 </div>
               </div>
               <div className="md:col-span-1">
-				<div className="rounded-xl border border-[#eeece6] bg-black/40 p-4 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
+                <div className="rounded-xl border border-black/40 bg-black/40 p-4 shadow-[0_0_28px_rgba(16,92,233,0.16)]">
                   <svg viewBox="0 0 144 144" className="w-full h-40 md:h-48" aria-hidden>
                     <defs>
                       <radialGradient id="g" cx="50%" cy="50%" r="50%">
@@ -52,18 +46,18 @@ export default function LivingNewsClusters() {
             </div>
           </div>
 		  <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-			{[
+          {[
 				{ title: "Threaded discussions", desc: "Replies nest into clean threads so context stays intact and noise collapses." },
 				{ title: "For/Against spaces", desc: "Split rooms for opposing takes. Compare arguments side‑by‑side with receipts." },
 				{ title: "Polling & consensus", desc: "Run quick polls, highlight expert votes, and track how sentiment shifts over time." }
 			].map((f, i) => (
-				<div key={i} className="rounded-2xl border border-[#eeece6] bg-black/50 backdrop-blur p-5 shadow-[0_0_48px_rgba(255,255,255,0.12)]">
+            <div key={i} className="rounded-2xl border border-black/40 bg-black/50 backdrop-blur p-5 shadow-[0_0_28px_rgba(16,92,233,0.16)]">
 					<h4 className="text-white text-base font-medium">{f.title}</h4>
 					<p className="text-gray-400 text-sm mt-2">{f.desc}</p>
-					<div className="mt-4 flex gap-2">
-						<button className="px-3 py-1.5 rounded-lg bg-gray-200 text-black text-xs">Learn more</button>
-						<button className="px-3 py-1.5 rounded-lg border border-white/15 text-gray-200 text-xs">See how it works</button>
-					</div>
+                    <div className="mt-4 flex gap-2">
+                        <button className="px-3 py-1.5 rounded-lg bg-[#105ce9] hover:bg-[#0e4fd0] text-white text-xs">Learn more</button>
+                        <button className="px-3 py-1.5 rounded-lg border border-[#105ce9] text-gray-200 text-xs">See how it works</button>
+                    </div>
 				</div>
 			))}
 		  </div>
