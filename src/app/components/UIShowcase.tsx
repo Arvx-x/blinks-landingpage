@@ -4,9 +4,9 @@ export default function UIShowcase() {
   return (
     <section id="ui-showcase" className="relative z-10 min-h-screen flex items-center justify-center px-6 py-24 bg-black cv-auto">
       {/* Mac-like window frame */}
-      <div className="relative w-full max-w-6xl mx-auto rounded-3xl border border-[#105ce9] bg-neutral-950/60 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.55)] overflow-hidden">
+      <div className="relative w-full max-w-6xl mx-auto rounded-3xl border border-[#eeece6] bg-neutral-950/60 backdrop-blur-xl shadow-[0_0_24px_rgba(16,92,233,0.12),0_20px_80px_rgba(0,0,0,0.55)] overflow-hidden">
         {/* Title bar */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[#105ce9] bg-[#105ce9]">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-700/50 bg-white">
           <span className="h-3 w-3 rounded-full bg-red-400" />
           <span className="h-3 w-3 rounded-full bg-yellow-400" />
           <span className="h-3 w-3 rounded-full bg-green-400" />
@@ -31,7 +31,7 @@ export default function UIShowcase() {
           {/* Right-side typographic stack */}
           <div className="text-center lg:text-left select-none">
             <div className="text-5xl sm:text-6xl md:text-7xl font-medium text-white/40 blur-[1.5px] mb-4">News</div>
-            <div className="text-6xl sm:text-7xl md:text-8xl font-medium text-white mb-4">Clulture</div>
+            <div className="text-6xl sm:text-7xl md:text-8xl font-medium text-[#105ce9] mb-4">Clulture</div>
             <div className="text-6xl sm:text-7xl md:text-8xl font-medium text-white/80">Debates</div>
           </div>
         </div>

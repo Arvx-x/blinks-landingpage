@@ -29,8 +29,13 @@ export default function CreatorsSection() {
           </div>
         </div>
         <div className="relative">
-        <div className="rounded-2xl border border-[#105ce9] bg-black/50 backdrop-blur p-4 shadow-[0_0_48px_rgba(16,92,233,0.25)]">
-            <Image src="/iphone-img.png" alt="Creator earnings and subscriptions" width={800} height={800} className="w-full h-auto rounded-xl" />
+        <div className="rounded-2xl border border-black/40 bg-black/50 backdrop-blur p-4 shadow-[0_0_24px_rgba(0,0,0,0.25)] relative h-[520px] md:h-[560px]">
+            <div className="absolute inset-[56px] md:inset-[47px] md:ml-2.5 md:mr-0.2 z-0 md-1.5">
+              <div className="relative w-full h-full overflow-hidden rounded-[24px] bg-black">
+                <Image src="/creators2.JPG" alt="Creator earnings and subscriptions" fill className="object-contain" />
+              </div>
+            </div>
+            <Image src="/iphone-img.png" alt="Phone frame" fill className="object-contain z-10 pointer-events-none" />
           </div>
         </div>
       </div>
