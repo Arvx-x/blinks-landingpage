@@ -100,7 +100,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
               const targetY = window.scrollY + rect.top
               window.scrollTo({ top: targetY, behavior: 'smooth' })
             }}
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm badge-text text-white/90 bg-gradient-to-b from-[#105ce9]/30 via-[#105ce9]/15 to-[#105ce9]/10 hover:from-[#105ce9]/40 hover:via-[#105ce9]/20 hover:to-[#105ce9]/15 backdrop-blur-md border border-white/20 ring-1 ring-inset ring-white/10 shadow-[0_8px_30px_rgba(16,92,233,0.25)] transition-colors"
+            className="inline-flex items-center gap-1 sm:gap-2 rounded-full px-3 py-1.5 sm:px-5 sm:py-2.5 text-xs sm:text-sm badge-text text-white/90 bg-gradient-to-b from-[#105ce9]/30 via-[#105ce9]/15 to-[#105ce9]/10 hover:from-[#105ce9]/40 hover:via-[#105ce9]/20 hover:to-[#105ce9]/15 backdrop-blur-md border border-white/20 ring-1 ring-inset ring-white/10 shadow-[0_8px_30px_rgba(16,92,233,0.25)] transition-colors"
           >
             Checkout the UI
           </button>
@@ -114,7 +114,7 @@ const NewsletterPage: React.FC<NewsletterPageProps> = () => {
           className="mb-4 relative z-10"
         >
           <h1 className="headline-massive text-gray-100 text-center">
-            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <span className="block text-5xl sm:text-6xl md:text-6xl lg:text-7xl">
               Join <span className="animated-gradient-text bg-clip-text text-transparent">blinks</span> Now
             </span>
           </h1>
